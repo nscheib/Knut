@@ -1,6 +1,6 @@
 /** IMPORT */
 import java.applet.Applet;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -17,22 +17,19 @@ public class ikea_rabatte extends Applet implements MouseListener, MouseMotionLi
 
     private static final long serialVersionUID = 1L;
 
+
     /**
      * Initialisierung des Applets und setzen des MouseListerns
      * fuer die Verwendung von Maus-Ereignissen
      */
-    public void init(){
+    public void init() {
+        //this.addMouseListener(this);
+        setSize(1200,800);
+        setBackground(new Color(255,0,255));
 
-		/* registriert Applet als MouseListener, so dass die jeweilige spezialisierte
-		 * Methoden aufgerufen wird, wenn ein Mausereignis innerhalb des Applets ausgeloest
-		 * wird
-		 */
-        this.addMouseListener(this);
-
-        // Initialisiere Baeme, Mond und Sterne ...
-
-
-
+        trees tree = new trees();
+        star stars = new star();
+        moon moons = new moon();
     }
 
     /**
@@ -40,17 +37,21 @@ public class ikea_rabatte extends Applet implements MouseListener, MouseMotionLi
      *
      * Umsetzung der Methode
      * @see java.awt.Component#paint(java.awt.Graphics)
-     *
      * @param g Graphik-Kontext, auf dem die Landschaft gezeichnet wird
      */
-    public void paint(Graphics g){
-        trees.drawTree(g);
-        star.drawStar(g);
-        moon.drawMoon(g);
-        //hier wird alles gezeichnet
+    public void paint(Graphics g) {
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+        //draw horizontal line
+        g2d.setColor(Color.white);
+        g2d.setStroke(new BasicStroke(3));
+        g2d.drawLine(0,300,1200,300);
+
+        //trees.drawTree(g);
+        //star.drawStar(g);
+        //moon.drawMoon(g);
     }
-
 
     /**
      * Aufloesung der x, y-Position, an der Mausbutton betaetigt wurde.
