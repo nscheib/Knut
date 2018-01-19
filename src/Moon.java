@@ -3,7 +3,7 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-public class moon {
+public class Moon {
     private int X;
     private int Y;
     private int radius = 10;

@@ -1,23 +1,26 @@
 import java.awt.*;
-import java.util.*;
 
+public class Tree {
 
-public class trees {
-
-    private int x;
-    private int y;
-    private int size;
-    private int discount = ((int)(Math.random()*15)+1);
-    private boolean choppedDown = false;
+    int x;
+    int y;
+    int size;
+    int discount;
+    boolean choppedDown = false;
 
 
     public void tree(int x, int y, int size){
-
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.discount = ((int)(Math.random()*30)+5);
     }
 
 
-    private void treeDiscountChopDown(int x, int size, int discount){
-        this.discount = discount;
+    private void treeDiscountChopDown(int x, int y, int size, int discount){
+        this.x = y;
+        this.y = x;
+        this.size = size;
     }
 
 
@@ -42,13 +45,6 @@ public class trees {
             if (treeAnzahl == anzahl){
                 schleife = true;
             } else {
-                Random rand = new Random();
-                int x = rand.nextInt(1000);
-                int y = rand.nextInt(200) + 250;
-                int size = rand.nextInt(8) + 2;
-
-
-
                 int xpoints[] = new int[]{pos1*size+x, pos2*size+x, pos3*size+x, pos4*size+x, pos5*size+x, pos6*size+x, pos7*size+x, pos8*size+x, pos9*size+x, pos10*size+x, pos11*size+x, pos12*size+x, pos13*size+x, pos14*size+x, pos15*size+x, pos16*size+x, pos17*size+x, pos18*size+x, pos19*size+x, pos20*size+x};
                 int ypoints[] = new int[]{pos40*size+y, pos21*size+y, pos22*size+y, pos23*size+y, pos24*size+y, pos25*size+y, pos26*size+y, pos27*size+y, pos28*size+y, pos29*size+y, pos30*size+y, pos31*size+y, pos32*size+y, pos33*size+y, pos34*size+y, pos35*size+y, pos36*size+y, pos37*size+y, pos38*size+y, pos39*size+y};
                 Polygon p = new Polygon(xpoints, ypoints, npoints);
@@ -58,7 +54,6 @@ public class trees {
                 anzahl++;
             }
         }
-        return;
     }
 
 }

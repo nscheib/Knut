@@ -1,12 +1,9 @@
 import java.awt.*;
 import java.util.Random;
 
-public class star {
+public class Star {
 
     private static void starMethode(int x, int y){
-        /*if (daytime = true){
-
-        }*/
     }
 
     protected static void drawStar(Graphics g){
@@ -35,14 +32,13 @@ public class star {
                 int npoints = 11;
 
                 Polygon p = new Polygon(xpoints, ypoints, npoints);
-                g2d.setColor(Color.white);
+                g2d.setColor(new Color(191, 174, 0));
                 g2d.setStroke(new BasicStroke(3));
-                g2d.drawPolygon(p);
+                g2d.fillPolygon(p);
 
                 anzahl++;
             }
         }
-        return;
     }
 
 }

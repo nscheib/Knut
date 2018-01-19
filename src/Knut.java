@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Random;
 /* END Import */
 
 /**
@@ -13,11 +14,17 @@ import java.awt.event.MouseMotionListener;
  * @author Nick Scheib
  * @version v0.1
  */
-public class ikea_rabatte extends Applet implements MouseListener, MouseMotionListener {
+public class Knut extends Applet implements MouseListener, MouseMotionListener {
     private static final long serialVersionUID = 1L;
 
-    private final int x = 0;
-    private final int y = 0;
+    static Star stars;
+    static Moon moon;
+
+    Random rand = new Random();
+    final int x = rand.nextInt(1000);
+    final int y = rand.nextInt(1000);
+    final int size = rand.nextInt(8) + 2;
+
 
     /**
      * Initialisierung des Applets und setzen des MouseListerns
@@ -25,13 +32,14 @@ public class ikea_rabatte extends Applet implements MouseListener, MouseMotionLi
      */
     public void init() {
         setSize(1200,800);
-        setBackground(new Color(255,0,255));
+        setBackground(new Color(0, 74, 71));
 
-        //this.addMouseListener(this);
+        stars = new Star();
+        moon = new Moon();
 
-        //trees = baum;
-        star stars = new star();
-        moon moons = new moon();
+        this.addMouseListener(this);
+
+
     }
 
     /**
@@ -50,9 +58,9 @@ public class ikea_rabatte extends Applet implements MouseListener, MouseMotionLi
         g2d.setStroke(new BasicStroke(3));
         g2d.drawLine(0,300,1200,300);
 
-        trees.drawTree(g);
-        star.drawStar(g);
-        moon.drawMoon(g);
+        Tree.drawTree(g);
+        Star.drawStar(g);
+        Moon.drawMoon(g);
     }
 
     /**
