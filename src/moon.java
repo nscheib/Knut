@@ -1,10 +1,11 @@
 
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class moon {
-    private int x = 10;
-    private int y = 10;
+    private int X;
+    private int Y;
     private int radius = 10;
     private boolean daytime = false;
 
@@ -12,28 +13,25 @@ public class moon {
 
     }
 
-    private static void switchTime(int x, int y, boolean daytime){
-        if (mouseklick == baum){
-            daytime = true;
-        }
+    private void switchTime(int x, int y, boolean daytime){
     }
 
-    public static void drawMoon(Graphics g, boolean daytime){
+    public static void drawMoon(Graphics g/*, boolean daytime*/){
 
-        if (daytime == true) {
+        //if (daytime == true) {
             Graphics2D g2d = (Graphics2D) g;
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
             g2d.setStroke(new BasicStroke(3));
             g2d.setColor(Color.white);
             g2d.drawOval(1000, 100, 100, 100);
-        } else {
+        /*} else {
             Graphics2D g2d = (Graphics2D) g;
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
             g2d.setStroke(new BasicStroke(3));
             g2d.setColor(Color.white);
             g2d.fillOval(1000, 100, 100, 100);
-        }
+        }*/
     }
 }

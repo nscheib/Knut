@@ -14,20 +14,22 @@ import java.awt.event.MouseMotionListener;
  * @version v0.1
  */
 public class ikea_rabatte extends Applet implements MouseListener, MouseMotionListener {
-
     private static final long serialVersionUID = 1L;
 
+    private final int x = 0;
+    private final int y = 0;
 
     /**
      * Initialisierung des Applets und setzen des MouseListerns
      * fuer die Verwendung von Maus-Ereignissen
      */
     public void init() {
-        //this.addMouseListener(this);
         setSize(1200,800);
         setBackground(new Color(255,0,255));
 
-        trees tree = new trees();
+        //this.addMouseListener(this);
+
+        //trees = baum;
         star stars = new star();
         moon moons = new moon();
     }
@@ -43,14 +45,14 @@ public class ikea_rabatte extends Applet implements MouseListener, MouseMotionLi
         Graphics2D g2d = (Graphics2D)g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        //draw horizontal line
+        //horizontale Linie
         g2d.setColor(Color.white);
         g2d.setStroke(new BasicStroke(3));
         g2d.drawLine(0,300,1200,300);
 
-        //trees.drawTree(g);
-        //star.drawStar(g);
-        //moon.drawMoon(g);
+        trees.drawTree(g);
+        star.drawStar(g);
+        moon.drawMoon(g);
     }
 
     /**
@@ -62,10 +64,9 @@ public class ikea_rabatte extends Applet implements MouseListener, MouseMotionLi
      * @param e Maus-Ereignis, das ausgeloest wurde
      */
     public void mouseClicked(MouseEvent e){
-        int x, y;
 
-        x = e.getX(); // x-Koordinate, an der Mausereignis stattgefunden hat
-        y = e.getY(); // y-Koordinate, an der Mausereignis stattgefunden hat
+        int x = e.getX(); // x-Koordinate, an der Mausereignis stattgefunden hat
+        int y = e.getY(); // y-Koordinate, an der Mausereignis stattgefunden hat
 
         // hier sollte dann der Maus-Event entsprechend verarbeitet werden
 
@@ -88,6 +89,7 @@ public class ikea_rabatte extends Applet implements MouseListener, MouseMotionLi
     public void mouseExited(MouseEvent e){
         // diese Methode bleibt einfach leer
     }
+
 
     /** Faengt Mouse-Event ab, ohne ihn weiter zu verarbeiten
      * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)

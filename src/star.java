@@ -1,13 +1,12 @@
-
-
 import java.awt.*;
+import java.util.Random;
 
 public class star {
 
     private static void starMethode(int x, int y){
-        if (daytime = true){
+        /*if (daytime = true){
 
-        }
+        }*/
     }
 
     protected static void drawStar(Graphics g){
@@ -23,9 +22,10 @@ public class star {
             int pos1 = 5, pos2 = 4, pos3 = 0, pos4 = 3, pos5 = 1, pos6 = 5, pos7 = 8, pos8 = 7, pos9 = 10, pos10 = 6, pos11 = 5;
             int pos20 = 0, pos21 = 4, pos22 = 4, pos23 = 6, pos24 = 10, pos25 = 7, pos26 = 10, pos27 = 6, pos28 = 4, pos29 = 4, pos30 = 0;
 
-            int A = (int) (Math.random() * 1100);
-            int B = (int) (Math.random() * 250)+50;
-            int Z = (int) (Math.random() * 5);
+            Random rand = new Random();
+            final int A = rand.nextInt(900);
+            final int B = rand.nextInt(100);
+            final int Z = rand.nextInt(6);
 
             if (anzahlSterne == anzahl) {
                 schleife = true;
