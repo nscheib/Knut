@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.Random;
 /* END Import */
 
 /**
@@ -20,39 +19,28 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
     private int x;
     private int y;
     private int size;
+    private int radius;
     private int discount;
     private boolean daytime;
+    private int mousX;
+    private int mousY;
+
 
     private Moon moon;
-
-    private Tree tree1;
-    private Tree tree2;
-    private Tree tree3;
-    private Tree tree4;
-    private Tree tree5;
-
-    private Star star1;
-    private Star star2;
-    private Star star3;
-    private Star star4;
-    private Star star5;
-    private Star star6;
-    private Star star7;
-    private Star star8;
+    private Tree tree1,tree2,tree3,tree4,tree5;
+    private Star star1,star2,star3,star4,star5,star6,star7,star8;
 
     /**
      * Initialisierung des Applets und setzen des MouseListerns
      * fuer die Verwendung von Maus-Ereignissen
      */
     public void init() {
-        setSize(1300,1000);
-        setBackground(new Color(0, 74, 71));
 
-        this.tree1 = new Tree(100,400,1);
-        this.tree2 = new Tree(200,300,5);
-        this.tree3 = new Tree(400,600,3);
-        this.tree4 = new Tree(600,100,6);
-        this.tree5 = new Tree(800,200,8);
+        this.tree1 = new Tree(400,100,30);
+        this.tree2 = new Tree(300,400,15);
+        this.tree3 = new Tree(500,500,35);
+        this.tree4 = new Tree(290,750,20);
+        this.tree5 = new Tree(270,1000,12);
 
         this.star1 = new Star(100,100,1);
         this.star2 = new Star(200, 160,3);
@@ -63,10 +51,11 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
         this.star7 = new Star(780, 180,2);
         this.star8 = new Star(900, 250,1);
 
-        this.moon = new Moon(1000, 100, 100);
+        this.moon = new Moon(1000, 100, 150);
 
         this.addMouseListener(this);
     }
+
 
     /**
      * Zeichnen der Landschaft.
@@ -79,11 +68,7 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
         Graphics2D g2d = (Graphics2D)g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        //horizontale Linie
-        g2d.setColor(Color.white);
-        g2d.setStroke(new BasicStroke(3));
-        g2d.drawArc(0,300,1300,300,10,100);
-        //g2d.drawLine(0,300,1300,300);
+        background(g);
 
         moon.drawMoon(g);
 
@@ -103,6 +88,35 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
         star8.drawStar(g);
     }
 
+    public void drawString(Graphics g){
+        Graphics g = getGraphics();
+        g.drawString("("+mousX+","+mousY+")",mousX,mousY);
+    }
+
+    public void background(Graphics g){
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        this.setSize(1300,800);
+        if(daytime){
+            // Oberer Teil des Hintergrundes
+            g2d.setColor(new Color(0, 27, 24));
+            g2d.fillRect(0, 0, 2000, 2000);
+            //Unterer Teil des Hintergundes
+            g2d.setColor(new Color(0, 0, 0));
+            g2d.fillRect(0, 370, 50000, 5000);
+            g2d.fillOval(700, 315, 900, 200);
+        } else {
+            // Oberer Teil des Hintergrundes
+            g2d.setColor(new Color(169, 234, 238));
+            g2d.fillRect(0, 0, 2000, 2000);
+            //Unterer Teil des Hintergundes
+            g2d.setColor(new Color(86, 122, 126));
+            g2d.fillRect(0, 370, 50000, 5000);
+            g2d.fillOval(700, 315, 900, 200);
+        }
+    }
+
     /**
      * Aufloesung der x, y-Position, an der Mausbutton betaetigt wurde.
      * Umsetzung der Methode
@@ -110,22 +124,18 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
      * @param e Maus-Ereignis, das ausgeloest wurde
      */
     public void mouseClicked(MouseEvent e){
-/*
-        if (clickAufMoon) {
-            setBackground(new Color(32, 32, 32));
-            daytime = true;
-        }*/
-        int x = e.getX(); // x-Koordinate, an der Mausereignis stattgefunden hat
-        int y = e.getY(); // y-Koordinate, an der Mausereignis stattgefunden hat
+        mousX = e.getX(); // x-Koordinate, an der Mausereignis stattgefunden hat
+        mousY = e.getY(); // y-Koordinate, an der Mausereignis stattgefunden hat
 
         // hier sollte dann der Maus-Event entsprechend verarbeitet werden
-
+        if (daytime){
+            daytime = true;
+        }
 
 
         // nach jeder Veraenderung soll der Graphik-Kontext neu gezeichnet werden
         repaint();
     }
-
 
 
     /** Faengt Mouse-Event ab, ohne ihn weiter zu verarbeiten
@@ -156,9 +166,6 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
     public void mouseReleased(MouseEvent e){
         // diese Methode bleibt einfach leer
     }
-
-
-
 
     @Override
     public void mouseDragged(MouseEvent e) {
