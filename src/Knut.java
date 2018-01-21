@@ -10,12 +10,14 @@ import java.awt.event.MouseMotionListener;
  * Applet zum Anzeigen von Rabatten durch Tannenbaeume
  *
  * Bei ausgewählten Rabatt wird der Baum gefällt, es ist möglich zwischen Nacht und Tag zu wechseln
+ * @author Christian Clausen
  * @author Nick Scheib
- * @version v0.1
+ * @version v0.9
  */
 public class Knut extends Applet implements MouseListener, MouseMotionListener {
     private static final long serialVersionUID = 1L;
 
+    // private Variablen
     private int x;
     private int y;
     private int size;
@@ -24,7 +26,6 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
     private boolean daytime;
     private int mousX;
     private int mousY;
-
 
     private Moon moon;
     private Tree tree1,tree2,tree3,tree4,tree5;
@@ -54,15 +55,12 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
         this.moon = new Moon(1000, 100, 150);
 
         this.addMouseListener(this);
-    }
-
+    }// END init()
 
     /**
-     * Zeichnen der Landschaft.
-     *
-     * Umsetzung der Methode
+     * Zeichnen des Mondes, der Bäume und der Sterne.
      * @see java.awt.Component#paint(java.awt.Graphics)
-     * @param g Graphik-Kontext, auf dem die Landschaft gezeichnet wird
+     * @param g Graphik-Kontext, auf dem die Elemente gezeichnet werden, mit denen interagiert wird oder sich öndern.
      */
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D)g;
@@ -78,27 +76,28 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
         tree4.drawTree(g);
         tree5.drawTree(g);
 
-        star1.drawStar(g);
-        star2.drawStar(g);
-        star3.drawStar(g);
-        star4.drawStar(g);
-        star5.drawStar(g);
-        star6.drawStar(g);
-        star7.drawStar(g);
-        star8.drawStar(g);
-    }
+        if(!moon.getDayTime()) {
+            star1.drawStar(g);
+            star2.drawStar(g);
+            star3.drawStar(g);
+            star4.drawStar(g);
+            star5.drawStar(g);
+            star6.drawStar(g);
+            star7.drawStar(g);
+            star8.drawStar(g);
+        }
+    }// END paint()
 
-    public void drawString(Graphics g){
-        Graphics g = getGraphics();
-        g.drawString("("+mousX+","+mousY+")",mousX,mousY);
-    }
-
+    /**
+     * Methode druckt den Hintergrund
+     * @param g Graphik-Kontext, auf dem der fest definierte Hintergrund gezeichnet wird.
+     */
     public void background(Graphics g){
         Graphics2D g2d = (Graphics2D)g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         this.setSize(1300,800);
-        if(daytime){
+        if(!moon.getDayTime()){
             // Oberer Teil des Hintergrundes
             g2d.setColor(new Color(0, 27, 24));
             g2d.fillRect(0, 0, 2000, 2000);
@@ -115,7 +114,7 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
             g2d.fillRect(0, 370, 50000, 5000);
             g2d.fillOval(700, 315, 900, 200);
         }
-    }
+    }// END background()
 
     /**
      * Aufloesung der x, y-Position, an der Mausbutton betaetigt wurde.
@@ -128,15 +127,17 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
         mousY = e.getY(); // y-Koordinate, an der Mausereignis stattgefunden hat
 
         // hier sollte dann der Maus-Event entsprechend verarbeitet werden
-        if (daytime){
-            daytime = true;
-        }
+        moon.switchTime(mousX, mousY);
+        tree1.chopDown(mousX, mousY);
+        tree2.chopDown(mousX, mousY);
+        tree3.chopDown(mousX, mousY);
+        tree4.chopDown(mousX, mousY);
+        tree5.chopDown(mousX, mousY);
 
 
         // nach jeder Veraenderung soll der Graphik-Kontext neu gezeichnet werden
         repaint();
-    }
-
+    }// END mouseClicked()
 
     /** Faengt Mouse-Event ab, ohne ihn weiter zu verarbeiten
      * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
@@ -151,7 +152,6 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
     public void mouseExited(MouseEvent e){
         // diese Methode bleibt einfach leer
     }
-
 
     /** Faengt Mouse-Event ab, ohne ihn weiter zu verarbeiten
      * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
@@ -176,4 +176,4 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
     public void mouseMoved(MouseEvent e) {
 
     }
-}
+}// END Knut.CLASS()
