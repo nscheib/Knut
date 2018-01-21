@@ -2,7 +2,6 @@
 import java.awt.*;
 /* END Import */
 
-
 /**
  * Class Star ist zuständig um die Sterne zu zeichnen, wenn der Mond bei Tag geklickt wurde.
  *
