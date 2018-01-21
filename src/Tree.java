@@ -2,7 +2,6 @@
 import java.awt.*;
 /* END Import */
 
-
 /**
  * Class Tree ist zustaendig um die Baeume zu zeichnen und zu pruefen,
  * ob diese gefaellt wurden oder nicht und gibt bei einem gefaellten Baum einen
