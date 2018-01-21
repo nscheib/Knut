@@ -2,7 +2,6 @@
 import java.awt.*;
 /* END Import */
 
-
 /**
  * Class Moon ist zuständig um den Mond zu zeichnen und breitet den Tag und Nacht
  * wechsel beim klicken mit der Maus, auf den Baum vor.
