@@ -6,7 +6,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 /* END Import */
 
-
 /**
  * Applet, fuer eine Knut-Rabattaktion. Die Baeume kann man faellen und zeigen im neuen Zustand den Rabatt an. Wenn man
  * auf die Sonne klickt, kann man die Tageszeit wechseln und die Umgebung veraendert sich, dabei erscheinen Sterne am Himmel.
