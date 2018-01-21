@@ -6,25 +6,24 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 /* END Import */
 
+
 /**
- * Applet, für eine RabattAktion. Die Baeume kann man fällen und zeigen dann den Rabatt an. Wenn man auf die Sonne klickt,
- * kann man die Tageszeit wechseln und die Umgebung veraendert sich, dabei erscheinen Sterne am Himmel
+ * Applet, fuer eine Knut-Rabattaktion. Die Baeume kann man faellen und zeigen im neuen Zustand den Rabatt an. Wenn man
+ * auf die Sonne klickt, kann man die Tageszeit wechseln und die Umgebung veraendert sich, dabei erscheinen Sterne am Himmel.
  *
- * Bei ausgewählten Rabatt wird der Baum gefällt, es ist möglich zwischen Nacht und Tag zu wechseln
+ * Aendert die Szene zwischen Tag und Nacht beim Mausklick auf den Mond
+ * Aendert jeden einzelnen Baum, bei Mausklick auf diesen. Dadurch wird der Baum als gefaellt dargestellt und
+ * gibt einen zufaelligen Rabatt aus.
+ *
  * @author Christian Clausen
  * @author Nick Scheib
- * @version v0.9
+ *
+ * @version v1.0
  */
 public class Knut extends Applet implements MouseListener, MouseMotionListener {
     private static final long serialVersionUID = 1L;
 
-    // private Variablen nicht manipulier bar
-    private int x;
-    private int y;
-    private int size;
-    private int radius;
-    private int discount;
-    private boolean daytime;
+    // private Variablen, nicht manipulierbar
     private int mousX;
     private int mousY;
 
@@ -59,9 +58,10 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
     }// END init()
 
     /**
-     * Zeichnen des Mondes, der Bäume und der Sterne.
+     * Zeichnen des Mondes, der Baeume und der Sterne.
      * @see java.awt.Component#paint(java.awt.Graphics)
-     * @param g Graphik-Kontext, auf dem die Elemente gezeichnet werden, mit denen interagiert wird oder sich öndern.
+     * @param g Graphik-Kontext, auf dem die Elemente gezeichnet werden,
+     * 			mit denen interagiert wird oder sich aenderen kann.
      */
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D)g;
@@ -90,15 +90,15 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
     }// END paint()
 
     /**
-     * Methode druckt den Hintergrund
+     * Methode druckt den Hintergrund mit Himmel und Boden. Wechselt bei Tag und Nacht die Farben
      * @param g Graphik-Kontext, auf dem der fest definierte Hintergrund gezeichnet wird.
      */
-    public void background(Graphics g){
+    public void background(Graphics g) {
         Graphics2D g2d = (Graphics2D)g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         this.setSize(1300,800);
-        if(!moon.getDayTime()){
+        if(!moon.getDayTime()) {
             // Oberer Teil des Hintergrundes
             g2d.setColor(new Color(0, 27, 24));
             g2d.fillRect(0, 0, 2000, 2000);
@@ -123,7 +123,7 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
      * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
      * @param e Maus-Ereignis, das ausgeloest wurde
      */
-    public void mouseClicked(MouseEvent e){
+    public void mouseClicked(MouseEvent e) {
         mousX = e.getX(); // x-Koordinate, an der Mausereignis stattgefunden hat
         mousY = e.getY(); // y-Koordinate, an der Mausereignis stattgefunden hat
 
@@ -135,7 +135,6 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
         tree4.chopDown(mousX, mousY);
         tree5.chopDown(mousX, mousY);
 
-
         // nach jeder Veraenderung soll der Graphik-Kontext neu gezeichnet werden
         repaint();
     }// END mouseClicked()
@@ -143,28 +142,28 @@ public class Knut extends Applet implements MouseListener, MouseMotionListener {
     /** Faengt Mouse-Event ab, ohne ihn weiter zu verarbeiten
      * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
      */
-    public void mouseEntered(MouseEvent e){
+    public void mouseEntered(MouseEvent e) {
         // diese Methode bleibt einfach leer
     }
 
     /** Faengt Mouse-Event ab, ohne ihn weiter zu verarbeiten
      * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
      */
-    public void mouseExited(MouseEvent e){
+    public void mouseExited(MouseEvent e) {
         // diese Methode bleibt einfach leer
     }
 
     /** Faengt Mouse-Event ab, ohne ihn weiter zu verarbeiten
      * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
      */
-    public void mousePressed(MouseEvent e){
+    public void mousePressed(MouseEvent e) {
         // diese Methode bleibt einfach leer
     }
 
     /** Faengt Mouse-Event ab, ohne ihn weiter zu verarbeiten
      * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
      */
-    public void mouseReleased(MouseEvent e){
+    public void mouseReleased(MouseEvent e) {
         // diese Methode bleibt einfach leer
     }
 
