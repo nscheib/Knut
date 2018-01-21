@@ -7,7 +7,8 @@ import java.awt.event.MouseMotionListener;
 /* END Import */
 
 /**
- * Applet zum Anzeigen von Rabatten durch Tannenbaeume
+ * Applet, für eine RabattAktion. Die Baeume kann man fällen und zeigen dann den Rabatt an. Wenn man auf die Sonne klickt,
+ * kann man die Tageszeit wechseln und die Umgebung veraendert sich, dabei erscheinen Sterne am Himmel
  *
  * Bei ausgewählten Rabatt wird der Baum gefällt, es ist möglich zwischen Nacht und Tag zu wechseln
  * @author Christian Clausen
@@ -17,7 +18,7 @@ import java.awt.event.MouseMotionListener;
 public class Knut extends Applet implements MouseListener, MouseMotionListener {
     private static final long serialVersionUID = 1L;
 
-    // private Variablen
+    // private Variablen nicht manipulier bar
     private int x;
     private int y;
     private int size;
